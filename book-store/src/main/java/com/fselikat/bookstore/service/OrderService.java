@@ -24,7 +24,7 @@ public class OrderService {
     }
     public Order putAnOrder(List<Integer> bookIdList, String userName){
         List <Optional<Book>> bookList =bookIdList.stream()
-                .map(bookId -> bookService.findBookById(bookId)).collect(Collectors.toList());
+                .map(bookService::findBookById).collect(Collectors.toList());
 
         Double totalPrice=bookList.stream()
                 .map(optionalBook -> optionalBook.map(Book::getPrice).orElse(0.0))
@@ -33,5 +33,8 @@ public class OrderService {
         Order order = Order.builder().bookList(bookIdList)
                 .totalPrice(totalPrice).userName(userName).build();
         return orderRepository.save(order);
+    }
+    public List<Order> getAllOrders(){
+        return orderRepository.findAll();
     }
 }
