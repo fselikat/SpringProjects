@@ -20,7 +20,11 @@ public class Order {
     private  Integer id;
 
     private String userName;
+
+    @Column
+    @ElementCollection(targetClass = Integer.class)
     private List<Integer> bookList;
+
     private Double totalPrice;
 
 

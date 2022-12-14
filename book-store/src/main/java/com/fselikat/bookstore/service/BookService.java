@@ -4,6 +4,7 @@ import com.fselikat.bookstore.model.Book;
 import com.fselikat.bookstore.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -16,5 +17,9 @@ public class BookService {
     }
     public Optional<Book> findBookById(Integer bookId){
         return bookRepository.findById(bookId);
+    }
+
+    public List<Book> getAllBooks(){
+        return bookRepository.findAll();
     }
 }
